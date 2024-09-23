@@ -1,0 +1,4 @@
+name: StorageInterfaceExample
+version: '1.0-SNAPSHOT'
+main: dev.themeinerlp.storageInterfaceExample.StorageInterfaceExample
+api-version: '1.21'
