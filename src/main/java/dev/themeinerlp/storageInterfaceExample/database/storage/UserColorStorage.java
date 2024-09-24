@@ -6,6 +6,7 @@ import dev.themeinerlp.storageInterfaceExample.database.repository.UserColorRepo
 import java.sql.Connection;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public class UserColorStorage implements UserColorRepository {
 
@@ -18,6 +19,19 @@ public class UserColorStorage implements UserColorRepository {
     @Override
     public Optional<UserColor> findByUniqueIdAndLabel(UUID uniqueId) {
         return Optional.empty();
+    }
+
+    @Override
+    public CompletableFuture<UserColor> asyncFindByUniqueIdAndLabel(UUID uniqueId) {
+        return CompletableFuture.supplyAsync(() -> {
+            //DB Anfrage
+            return new UserColor(UUID.randomUUID(), "primary", "accent");
+        });
+    }
+
+    @Override
+    public CompletableFuture<UserColor> saveUserColor(UserColor userColor) {
+        return CompletableFuture.supplyAsync(() -> userColor);
     }
 
     @Override
